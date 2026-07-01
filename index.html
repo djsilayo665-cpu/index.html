@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Silent DJ - Pair Sites</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0e17;
+            color: #e0e7ff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 640px;
+            width: 100%;
+            background: #111927;
+            border: 1px solid #1a2234;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header .icon {
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .header h1 span {
+            color: #1e90ff;
+        }
+
+        .header .subtitle {
+            font-size: 14px;
+            color: #8899bb;
+            margin-top: 4px;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #1a2234;
+            margin: 20px 0;
+        }
+
+        .pair-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .pair-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #0a0e17;
+            border: 1px solid #1a2234;
+            border-radius: 12px;
+            padding: 14px 18px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #e0e7ff;
+        }
+
+        .pair-item:hover {
+            border-color: #1e90ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(30, 144, 255, 0.1);
+        }
+
+        .pair-item .left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pair-item .badge {
+            font-size: 11px;
+            font-weight: 600;
+            background: #1a2234;
+            color: #8899bb;
+            padding: 2px 12px;
+            border-radius: 20px;
+        }
+
+        .pair-item .url {
+            font-size: 14px;
+            font-weight: 500;
+            color: #e0e7ff;
+        }
+
+        .pair-item .status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status.online {
+            color: #00c853;
+        }
+
+        .status.offline {
+            color: #ff4444;
+        }
+
+        .status .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .status .dot.online {
+            background: #00c853;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .status .dot.offline {
+            background: #ff4444;
+        }
+
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #556688;
+            border-top: 1px solid #1a2234;
+            padding-top: 20px;
+        }
+
+        .footer a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            .container {
+                padding: 24px 16px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .pair-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .pair-item .status {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="icon">🎵</div>
+            <h1>SILENT <span>DJ</span></h1>
+            <p class="subtitle">⚡ pair sites — select to connect</p>
+        </div>
+
+        <hr class="divider" />
+
+        <!-- PAIR SITES LIST -->
+        <div class="pair-list">
+
+            <!-- Site 1 -->
+            <a href="https://your-pair-site-1.com" target="_blank" class="pair-item">
+                <div class="left">
+                    <span class="badge">PAIR SITE 1</span>
+                    <span class="url">pair.yourdomain.com</span>
+                </div>
+                <div class="status online">
+                    <span class="dot online"></span>
+                    ONLINE · CUSTOM DOMAIN
+                </div>
+            </a>
+
+            <!-- Site 2 -->
+            <a href="https://your-pair-site-2.onrender.com" target="_blank" class="pair-item">
+                <div class="left">
+                    <span class="badge">PAIR SITE 2</span>
+                    <span class="url">pair-bot.onrender.com</span>
+                </div>
+                <div class="status online">
+                    <span class="dot online"></span>
+                    ONLINE · RENDER CLOUD
+                </div>
+            </a>
+
+            <!-- Site 3 -->
+            <a href="https://your-pair-site-3.onrender.com" target="_blank" class="pair-item">
+                <div class="left">
+                    <span class="badge">PAIR SITE 3</span>
+                    <span class="url">pair-bot-backup.onrender.com</span>
+                </div>
+                <div class="status online">
+                    <span class="dot online"></span>
+                    ONLINE · RENDER CLOUD
+                </div>
+            </a>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p>
+                SILENT DJ BOT · BY YOUR NAME · ALL CONNECTIONS SSL SECURED 🔒
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
