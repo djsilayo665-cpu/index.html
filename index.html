@@ -1,259 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Silent DJ - Pair Sites</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+## Project: Silent DJ Tech — WhatsApp Bot Platform
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0a0e17;
-            color: #e0e7ff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+### Brand Identity
+- **Name**: Silent DJ Tech
+- **Tagline**: "Automate your WhatsApp, control everything from one dashboard."
+- **Colors**: 
+  - Background: #0A0D1A (Deep Blue-Black)
+  - Neon Green: #00FF41 (buttons, highlights, glows)
+  - Red: #FF2D2D (alerts, warnings)
+  - Blue: #0088FF (info, links)
+- **Theme**: Dark, futuristic, cyberpunk DJ aesthetic with glassmorphism cards and neon glow effects.
 
-        .container {
-            max-width: 640px;
-            width: 100%;
-            background: #111927;
-            border: 1px solid #1a2234;
-            border-radius: 20px;
-            padding: 40px 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-        }
+### Pages & Features
 
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+#### 1. Landing Page (Public)
+- **Hero Section**:
+  - Animated glowing title: "Silent DJ Tech"
+  - Subtitle: "Automate your WhatsApp, control everything from one dashboard."
+  - CTA Buttons: "Get Started" (links to login) and "Deploy Now" (scrolls to features)
+- **Features Grid** (4 cards with icons):
+  - One-Click Deploy
+  - Multi-Currency (TZS, KES, USD)
+  - Aviator Game
+  - Live Logs
+- **Stats Section**:
+  - "500+ Bots Deployed"
+  - "99.99% Uptime"
+  - "10+ Currencies"
+- **Footer**: "Built by djsilayo — Payment: 255768192847"
 
-        .header .icon {
-            font-size: 48px;
-            margin-bottom: 8px;
-        }
+#### 2. Authentication (Supabase)
+- **Login Page**: Email + password fields, "Sign Up" link
+- **Register Page**: Email, username, password fields
+- After login → redirect to Dashboard
 
-        .header h1 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 1px;
-        }
+#### 3. Dashboard (After Login)
+- **Sidebar Navigation**:
+  - Overview
+  - My Bots
+  - Deploy
+  - Servers
+  - Wallet
+  - Coins
+  - Game (Aviator)
+  - Logs
+- **Overview Page**:
+  - 4 Stats Cards: Coin Balance, Total Bots, Active Servers, Uptime (30d)
+  - Recent Activity feed (last 5 actions)
+- **My Bots Page**:
+  - List of bots with status (Online/Offline/Deploying)
+  - Action buttons: View Logs, Restart, Delete
+  - "Deploy New Bot" button
+- **Deploy Page**:
+  - Form: GitHub Repo URL (pre-filled with https://github.com/djsilayo665-cpu/silent-dj)
+  - Environment Variables textarea (SESSION_ID, OWNER_NUMBER, BOT_NAME)
+  - "Deploy" button with terminal-style log simulation
+- **Wallet Page**:
+  - Balance display
+  - Transaction history list
+  - "Add Funds" and "Withdraw" buttons
+- **Coins Page**:
+  - Coin packages: 100, 500, 1000, 5000 coins
+  - Each with USD and TZS prices
+  - "Buy" buttons
+  - Payment info: "Payments to 255768192847 (djsilayo)"
+- **Servers Page**:
+  - 3 Plans: Basic (50 coins/mo), Pro (150 coins/mo), Enterprise (500 coins/mo)
+  - Each with features list and "Rent Now" button
+- **Aviator Game Page**:
+  - Canvas with multiplier curve
+  - Bet input and "Cash Out" button
+  - Shows win/loss and updates coin balance
+- **Logs Page**:
+  - Terminal-style log viewer with real-time simulation
+  - "Refresh" and "Clear" buttons
 
-        .header h1 span {
-            color: #1e90ff;
-        }
+### Tech Stack
+- **Frontend**: React + Tailwind CSS + Framer Motion
+- **Backend**: Supabase (Auth + Database)
+- **Payments**: Simulated (M-Pesa + Stripe placeholders)
+- **Hosting**: Netlify (drag-and-drop deployment)
 
-        .header .subtitle {
-            font-size: 14px;
-            color: #8899bb;
-            margin-top: 4px;
-        }
+### Database Tables (Supabase)
+- `users`: id, email, username, coins (default 100), created_at
+- `bots`: id, user_id, name, repo_url, status (online/offline), uptime, created_at
+- `transactions`: id, user_id, type (deposit/spend), amount, description, created_at
+- `game_results`: id, user_id, bet, multiplier, win, created_at
 
-        .divider {
-            border: none;
-            border-top: 1px solid #1a2234;
-            margin: 20px 0;
-        }
+### Deliverables
+- Full working React + Tailwind website
+- All pages functional with real Supabase data
+- Mobile responsive
+- Neon green/dark theme with glassmorphism
+- Ready to deploy to Netlify
 
-        .pair-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .pair-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #0a0e17;
-            border: 1px solid #1a2234;
-            border-radius: 12px;
-            padding: 14px 18px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: #e0e7ff;
-        }
-
-        .pair-item:hover {
-            border-color: #1e90ff;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(30, 144, 255, 0.1);
-        }
-
-        .pair-item .left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .pair-item .badge {
-            font-size: 11px;
-            font-weight: 600;
-            background: #1a2234;
-            color: #8899bb;
-            padding: 2px 12px;
-            border-radius: 20px;
-        }
-
-        .pair-item .url {
-            font-size: 14px;
-            font-weight: 500;
-            color: #e0e7ff;
-        }
-
-        .pair-item .status {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .status.online {
-            color: #00c853;
-        }
-
-        .status.offline {
-            color: #ff4444;
-        }
-
-        .status .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .status .dot.online {
-            background: #00c853;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        .status .dot.offline {
-            background: #ff4444;
-        }
-
-        @keyframes pulse {
-            0%,
-            100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.3;
-            }
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 12px;
-            color: #556688;
-            border-top: 1px solid #1a2234;
-            padding-top: 20px;
-        }
-
-        .footer a {
-            color: #1e90ff;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 480px) {
-            .container {
-                padding: 24px 16px;
-            }
-
-            .header h1 {
-                font-size: 22px;
-            }
-
-            .pair-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-
-            .pair-item .status {
-                align-self: flex-start;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <!-- HEADER -->
-        <div class="header">
-            <div class="icon">🎵</div>
-            <h1>SILENT <span>DJ</span></h1>
-            <p class="subtitle">⚡ pair sites — select to connect</p>
-        </div>
-
-        <hr class="divider" />
-
-        <!-- PAIR SITES LIST -->
-        <div class="pair-list">
-
-            <!-- Site 1 -->
-            <a href="https://your-pair-site-1.com" target="_blank" class="pair-item">
-                <div class="left">
-                    <span class="badge">PAIR SITE 1</span>
-                    <span class="url">pair.yourdomain.com</span>
-                </div>
-                <div class="status online">
-                    <span class="dot online"></span>
-                    ONLINE · CUSTOM DOMAIN
-                </div>
-            </a>
-
-            <!-- Site 2 -->
-            <a href="https://your-pair-site-2.onrender.com" target="_blank" class="pair-item">
-                <div class="left">
-                    <span class="badge">PAIR SITE 2</span>
-                    <span class="url">pair-bot.onrender.com</span>
-                </div>
-                <div class="status online">
-                    <span class="dot online"></span>
-                    ONLINE · RENDER CLOUD
-                </div>
-            </a>
-
-            <!-- Site 3 -->
-            <a href="https://your-pair-site-3.onrender.com" target="_blank" class="pair-item">
-                <div class="left">
-                    <span class="badge">PAIR SITE 3</span>
-                    <span class="url">pair-bot-backup.onrender.com</span>
-                </div>
-                <div class="status online">
-                    <span class="dot online"></span>
-                    ONLINE · RENDER CLOUD
-                </div>
-            </a>
-
-        </div>
-
-        <!-- FOOTER -->
-        <div class="footer">
-            <p>
-                SILENT DJ BOT · BY YOUR NAME · ALL CONNECTIONS SSL SECURED 🔒
-            </p>
-        </div>
-    </div>
-
-</body>
-</html>
+--- End of Prompt ---
